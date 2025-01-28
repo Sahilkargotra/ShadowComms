@@ -5,8 +5,8 @@ import UserModel from "@/models/User";
 import {User} from "next-auth";
 
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export async function DELETE(request: Request,{params}:{params:{messageid: string}})
+ 
+export async function DELETE({params}:{params:{messageid: string}})
 {
   const messageId = params?.messageid
     await dbConnect()
