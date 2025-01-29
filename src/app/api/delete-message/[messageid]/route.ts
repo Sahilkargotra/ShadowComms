@@ -5,8 +5,8 @@ import UserModel from "@/models/User";
 import { User } from "next-auth";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export async function DELETE(request: Request, { params }: { params: { messageid: string } }) {
-  const messageId = params.messageid;
+export async function DELETE(request: Request, context : { params: { messageid: string } }) {
+  const {messageid} = context.params;
 
   // Connect to the database
   await dbConnect();
@@ -31,7 +31,7 @@ export async function DELETE(request: Request, { params }: { params: { messageid
     // Attempt to remove the message from the user's messages array
     const updateResult = await UserModel.updateOne(
       { _id: _user._id },
-      { $pull: { messages: { _id: messageId } } }
+      { $pull: { messages: { _id: messageid } } }
     );
 
     // If no document was updated, return a not found response
