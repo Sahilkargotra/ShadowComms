@@ -11,7 +11,6 @@ import { Separator } from "@radix-ui/react-separator";
 import { Switch } from "@radix-ui/react-switch";
 import axios, { AxiosError } from "axios";
 import { Loader2, RefreshCcw } from "lucide-react";
-import { User } from "next-auth";
 import { useSession } from "next-auth/react";
 import { useCallback, useEffect, useState } from "react"
 import { useForm } from "react-hook-form";
@@ -103,7 +102,7 @@ function UserDashboard (){
       });
     }
   }
- const {username} =  session?.user as User;
+ const {username} =  session?.user || {};
  // TODO  do more research  to get baseURL
  let baseUrl = '';
 if (typeof window !== 'undefined') {
